@@ -1,0 +1,9 @@
+NO,NAME,a1,a2,a3,ALD,EMS,AKS,CAP,alph,belt,Z0
+index,surfaceType,OHM_a1,OHM_a2,OHM_a3,albedo,emissivity,heat_conductivity,volume_heat_capacity,LUMPS_alhp,LUMPS_belt,Z0
+none,unit,none,s^-1,J.m^-2.s^-1,none,none,J/(m*¡æ*s),J/(m^3*¡æ),,W/m^2,m
+0,water,0.5,0.21,-39.1,0.1,0.995,0.7,4.20E+06,1.2,20,0.001
+1,shortVegetable(corp and grass),0.28,0.54,-27.4,0.25,0.93,0.4004,2.40E+06,0.8,20,0.05
+2,tree(tree and shurb),0.11,0.11,-12.3,0.18,0.975,0.4004,2.40E+06,0.8,20,0.5
+3,road(impermeable),0.72,0.19,-36.6,0.12,0.95,1.2,1.00E+06,0.5,20,1
+4,roof(build),0.24,0.43,-16.69,0.22,0.91,0.98,1.00E+06,0.5,20,2
+5,wasteland,0.38,0.56,-27.3,0.2,0.953,0.7,2.00E+06,0.6,20,0.1
