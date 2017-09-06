@@ -1,8 +1,8 @@
 Introductions for Using TST2M Model Software 
 
-1.Preparation for the using the software
+1.Preparation for the using the software.
 TST2M model software is used to simulate land surface temperature and near surface air temperature. To run it , we should installed python2.7 runtime environment, installed numpy, pandas, and matplotlib package. It was tested in win7 system.
-2.Software files introductions 
+2.Software files introductions. 
 modelMain.py is the main program used to prepare for input data, controlling the model and output data for the model. 
 TST2MClass.py includes the class of TST2M Model, the surface temperature and near surface air temperature simulation procedures are implemented here. 
 constAndSetting.py includes the setting of constant and program running setting.
@@ -17,7 +17,7 @@ ReadFileData.py includes the based class for reading AWS file
 shortwaveDownwardCompute.py includes the function to compute the downward short wave flux.
 computeQs.py includes the methods to compute net wave radiation flux
 
-3.The parameter files introductions
+3.The parameter files introductions.
 The parameter files are saved in the “conf” directory which is at the same level of the modelMain.py.
 land2011.txt is the surface type data that derived from MODIS. 
 mapData2ModelMapData.csv is the reference table for surface type index from “land2011.txt” to the model surface type index, which is set by ‘physicalParam.csv’. 
@@ -25,17 +25,17 @@ listStationForOutput.txt is the list of the stations that need to output serial 
 output-lucy.csv is the anthropogenic heat table.
 physicalParam.csv is the table of physical parameter for different surface types.
 
-4.Using of TST2MClass
+4.Using of TST2MClass.
 The model class is named TST2MModel and defined in TST2MClass.py. We use the model class as following step：
-Step 1: Create the model object
+Step 1: Create the model object.
 l = TST2MModel(’physicalParam.csv’)
 ’physicalParam.csv’ is the table of physical parameter for different surface types. 
 
-Step 2:set surface type area array
+Step 2:set surface type area array.
 l.setSurfaceArea(surfAreaArr)
 surfAreaArr should be numpy array with shape=(l.latGridNum,l.lonGridNum,l.surfaceTypeNum),value is the proportion of each surface type area in the grid.
 
-step 3:set initiated time
+step 3:set initiated time.
    l.setInitiateTime(dt)
   dt is the beginning time of simulation, dt is datetime type of python.
 
@@ -43,14 +43,14 @@ step 4:set initiated air temperature and surface temperaure field
    l.initiateMetData(ts0,ta0)
 ts0 and ta0 should be numpy float array with shape=(l.latGridNum,l.lonGridNum)
 
-step 5:set backgroud meteorological data field of each step
+step 5:set backgroud meteorological data field of each step.
    l.setBackgroundMetDataOfEachTime(u,v,td,p,cl,ch,tb,tUpLevel,mlb)
 meteorological data should be numpy float array with shape=(l.stepNum,l.latGridNum,l.lonGridNum). u,v is the wind u and wind v in 10m, td is the drew point in 2m, p is the sea level pressure, cl is low/middle cloud cover, tb is deep soil temperature, tUpLevel is air block up level temperature, mlb is air block height. 
 
-step 6:run model
+step 6:run model.
    l.run()
 
-5.the input and output of the model
+5.the input and output of the model.
 What the main program should do is setting the parameters, preparing the input data, creating and controlling the model object. We should prepare the following parameter: model run time parameters, surface physical parameters, the surface type percent of each grid etc. And we should prepare initiate surface temperature and near surface air temperature fields, and background meteorological data should obey the format that mention in Point 4. Here the example is given to show how to prepare the input data and what output data will get from the model.
 Input data：
 1)model run time parameter, which is set in ‘constAndSetting.py’.
@@ -63,7 +63,7 @@ The simulating range is 120.7~122.2°E，32~30.5°N
 The grid number,
 GRIDXNUM=101
 GRIDYNUM=101
-    The simulating step
+The simulating step,
 STEPNUM=25
 anthropogenic heat(True) or not(False)
 ADDQF=True
@@ -85,10 +85,10 @@ Line “8,0,0,1,0,0,0” means when the grid in ‘land2011.txt’ index number 
 If there is a more accurate underlying surface coverage type for a grid，we can adjust it by ’conf\ replaceMapPointSurType.csv’.In ‘replaceMapPointSurType.csv’, each line includes the grid index and the model surface type proportion. 
 For example, line ‘63,52,7,20,11,44,18,0’ means the type index 0 ~ 5 of the grid(i=63,j=52) is 7%,20%,11%,44%,18%,0% respectively, which will replace the data calculated from ‘land2011.txt’.
 
-4)initiate surface temperature and near surface air temperature field
+4)initiate surface temperature and near surface air temperature field.
 In the example the initiate field is get by interpolating the AWS data. The AWS data is  scatter data with position and 2m air temperature and land surface temperature. We can input other data source as initiate data, and the data should be numpy array with shape of (GRIDYNUM,GRIDXNUM) .
 
-5)background meteorological data
+5)background meteorological data.
  In the example, the background field data of low (in) high cloud, cloud cover, 10 meter height U, 10 meter height V, 1000hPa temperature, 2 meter height temperature, 2 meter height dew point temperature are get from the ECMWF data formatted as diamond 4 (one of CMA MICAPS Data type) by resampling to model grid point data. The hourly data is obtained by linear interpolation from 3 hours of source data. The deep soil layer temperature is get from 20cm deep soil AWS data. Those data is saved in ‘datasource’ directory。
 
 Output：
