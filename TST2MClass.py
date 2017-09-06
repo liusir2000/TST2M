@@ -530,13 +530,12 @@ class TST2MModel:
              if atsk-atspk>0:
                   self.difh[k][i][j][y]=0
 
-        self.difle[k][i][j][y]=self.alt[k][i][j][y]-self.difh[k][i][j][y]          
-        '''     
+   
         self.difle[k][i][j][y]=self.LE[k][i][j][y]-self.LE[k-1][i][j][y]
         if self.difle[k][i][j][y]<0:
              if atsk-atspk>0:
                   self.difle[k][i][j][y]=0
-        '''          
+         
     
         #compute change of air temperature     
         self.deltTa=cof*self.getDeltTa(self.energyByAir,self.difh[k][i][j][y],0,self.alt[k][i][j][y],3600,amlb,ADST,ASPT)

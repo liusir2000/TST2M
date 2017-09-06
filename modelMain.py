@@ -236,6 +236,6 @@ if __name__=='__main__':
          drawPic(l,l.HAverage,u'H(w/m^2)','H',resultSavedDir)
          #drawPic(l,l.altAverage,u'diflt(w/m^2)','diflt',resultSavedDir)
          #drawPic(l,l.difhAverage,u'difh(w/m^2)','difh',resultSavedDir)
-         #drawPic(l,l.difleAverage,u'difle(w/m^2)','difle',resultSavedDir)
+         drawPic(l,l.difleAverage,u'difle(w/m^2)','difle',resultSavedDir)
          #drawPic(l,l.energyByAirAverage,u'EAir(w/m^2)','EAir',resultSavedDir)
 
